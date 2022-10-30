@@ -166,7 +166,102 @@ class user extends Controller
 
     }
 
+    public function page_title($url)
+    {
+        $fp = file_get_contents($url);
+        if (!$fp) return null;
+        $res = preg_match("/<title>(.*)<\/title>/siU", $fp, $title_matches);
+        if (!$res) return null;
+        // Clean up title: remove EOL's and excessive whitespace.
+        $title = preg_replace('/\s+/', ' ', $title_matches[1]);
+        $title = trim($title);
+        return $title;
+    }
 
+    public function insert_permition()
+    {
+        $model=new \application\model\User();
+        $page=$_POST['page'];
+        $new_perm=implode(',',$page);
+        $title=$_POST['title'];
+        $status=$_POST['status'];
+        $code=$model->getRandomString(6);
+        $author=$_SESSION['login'];
+        $date=date('Y,M,D');
+        $model=new \application\model\User();
+        $list=[$code,$title,$new_perm,$author,$date,$status];
+        $model->insert_perm($list);
+    }
 
+    public function perm_list()
+    {
+        $model=new \application\model\User();
+        return $model->permition_list();
 
+    }
+
+    public function delete_access($id)
+    {
+        $model=new \application\model\User();
+        $list=[$id];
+        $model->delete_perm($list);
+        $this->reback();
+    }
+
+    public function edit_perm($id)
+    {
+        $model=new \application\model\User();
+        $list=[$id];
+        $perm_record=$model->select_perm($list);
+        $this->view('admin.user.edit_perm',compact('perm_record'));
+    }
+
+    public function update_perm($id)
+    {
+        $title=$_POST['title'];
+        $status=$_POST['status'];
+        $page=implode(',',$_POST['page']);
+        $author=$_SESSION['login'];
+        $date=date('Y/m/d');
+        $list=[$title,$page,$author,$date,$status,$id];
+        $model=new \application\model\User();
+        $model->update_permition($list);
+        $this->reback();
+    }
+
+    public function all_users()
+    {
+        $model=new \application\model\User();
+        return $model->select_all();
+    }
+
+    public function user_page($id)
+    {
+
+        $model=new \application\model\User();
+        $user_record=$model->get_user($id);
+        $this->view('admin.user.edit_user',compact('user_record'));
+    }
+
+    public function update_user($id,$info,$img)
+    {
+        $fullname=$info['fullname'];$Mcode=$info['Mcode'];$father_name=$info['father_name'];$birthday=$info['birthday'];
+        $degree=$info['degree'];$field=$info['field'];$phone=$info['phone'];$state=$info['state'];$city=$info['city'];
+        $email=$info['email'];$linkdin=$info['linkdin'];$instagram=$info['instagram'];$telegram=$info['telegram'];
+        $home_address=$info['home_address'];$work_address=$info['work_address'];$skill=$info['skill'];
+        $skill_desc=$info['skill_desc'];$permition=$info['permition'];$status=$info['status'];$author=$_SESSION['login'];
+        $date_register=date('Y/M/D');
+        $model=new \application\model\User();
+        $last_info=$model->get_user($id);
+        if ($img['name']!==""){
+            unlink($last_info->image);
+            $dir_pics=$model->uploader($img,$this->image_address('img/'));
+        }else{
+            $dir_pics=$last_info->image;
+        }
+        $password=sha1($Mcode);
+        $list=[$email,$password,$fullname,$Mcode,$father_name,$birthday,$degree,$field,$phone,$state,$city,$email,$linkdin,$instagram,$telegram,$home_address,$work_address,$skill,$skill_desc,$dir_pics,$permition,$author,$date_register,$status,$id];
+        $model->update_user($list);
+        $this->route("user/user_menu/all_users");
+    }
 }
