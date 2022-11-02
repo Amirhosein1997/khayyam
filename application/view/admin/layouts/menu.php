@@ -53,7 +53,7 @@
                     <path d="M5.062 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062V12zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762V8.162h1.822c1.236 0 1.887.463 1.887 1.348 0 .896-.627 1.377-1.811 1.377H6.375z"></path>
                     <path d="M0 4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4zm4-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3H4z"></path>
                 </svg>
-                دسته ها
+                مدیریت دسته ها
                 <span style="float: left;">
                                 <svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 20 20"
                                      fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -65,8 +65,8 @@
             </a>
         </li>
         <ul class="sub-category">
-            <li><a href="<?php $this->url('category/index') ?>">همه دسته ها</a></li>
-            <li><a href="<?php $this->url('category/create') ?>">افزودن دسته جدید</a></li>
+            <li><a href="<?php $this->url('category/cat_menu/new_cat') ?>">افزودن دسته جدید</a></li>
+            <li><a href="<?php $this->url('category/cat_menu/cat_list') ?>">مشاهده دسته بندی ها</a></li>
 
         </ul>
 
@@ -76,7 +76,7 @@
                     <path d="M5.062 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062V12zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762V8.162h1.822c1.236 0 1.887.463 1.887 1.348 0 .896-.627 1.377-1.811 1.377H6.375z"></path>
                     <path d="M0 4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4zm4-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3H4z"></path>
                 </svg>
-                نوشته ها
+                مدیریت نوشته ها
                 <span style="float: left;">
                                 <svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 20 20"
                                      fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -88,8 +88,8 @@
             </a>
         </li>
         <ul class="sub-article">
-            <li><a href="<?php $this->url('article/index') ?>">همه نوشته ها</a></li>
-            <li><a href="<?php $this->url('article/create') ?>">افزودن نوشته جدید</a></li>
+            <li><a href="<?php $this->url('article/article_menu/add_article') ?>">افزودن نوشته جدید</a></li>
+            <li><a href="<?php $this->url('article/article_menu/article_list') ?>">همه نوشته ها</a></li>
 
         </ul>
     </ul>

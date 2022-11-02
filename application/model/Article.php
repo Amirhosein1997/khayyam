@@ -23,7 +23,7 @@ class Article extends Model
         return $this->query($query)->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function find($id)
+    public function article_record($id)
     {
         $query = "SELECT * FROM article_tbl WHERE id=?";
         return $this->query($query,[$id])->fetch(PDO::FETCH_OBJ);
@@ -31,7 +31,7 @@ class Article extends Model
 
     public function insert($values)
     {
-        $query = "INSERT INTO article_tbl (title,text,cat_id,img,author,tarikh) VALUE (?,?,?,?,?,?)";
+        $query = "INSERT INTO article_tbl (title,text,cat_id,img,author) VALUE (?,?,?,?,?)";
         $this->execute($query,array_values($values));
     }
 
@@ -45,5 +45,23 @@ class Article extends Model
     {
         $query = "DELETE FROM article_tbl WHERE id=?";
         $this->execute($query,[$id]);
+    }
+
+    public function insert_article($list)
+    {
+        $query="insert into article_tbl (code_article, title, text, cat_id, img, author, date, status) VALUES (?,?,?,?,?,?,?,?)";
+        $this->execute($query,$list);
+    }
+
+    public function select_articles()
+    {
+        $query="select * from article_tbl order by id desc ";
+        return $this->query($query)->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function update_article($list)
+    {
+        $query="update article_tbl set title=?,text=?,cat_id=?,img=?,author=?,date=?,status=? where id=?";
+        $this->execute($query,$list);
     }
 }

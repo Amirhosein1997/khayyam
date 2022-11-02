@@ -4,6 +4,9 @@
 namespace application\controller;
 use application\model\Article as ArticleModel;
 use application\model\Category;
+use application\model\Model;
+
+
 class Article extends Controller
 {
     public function index()
@@ -67,4 +70,74 @@ class Article extends Controller
     {
         
         }
+
+    public function article_menu($page)
+    {
+        $this->view('admin.article.'.$page);
+        }
+
+    public function add_article()
+    {
+        $model=new Model();
+       /* if ($_POST['publish']){
+            $status='publish';
+        }elseif($_POST['save']){
+            $status='save';
+        }*/
+        $status='save';
+        $info=$_POST['info'];
+        $img=$_FILES['img'];
+        $cats=$_POST['cat'];
+        $title=$info['title'];
+        $code=$model->getRandomString('6');
+        $text=$info['text'];
+        $cat_id=implode(',',$cats);
+        $articles_loc=$this->image_address('img/');
+        if (!is_dir($articles_loc)){mkdir($articles_loc);}
+        $image=$model->uploader($img, $articles_loc);
+        $author=$_SESSION['login_user'];
+        $date=date('Y/m/d');
+        $article_model=new \application\model\Article();
+        $list=[$code,$title,$text,$cat_id,$image,$author,$date,$status];
+        $article_model->insert_article($list);
+        $this->reback();
+        }
+
+    public function edit_article_page($id)
+    {
+        $article_model=new \application\model\Article();
+        $article_record=$article_model->article_record($id);
+        $this->view('admin.article.edit_article',compact('article_record'));
+        }
+
+    public function edit_article($id)
+    {
+            $status='save';
+            $info=$_POST['info'];
+            $image=$_FILES['img'];
+            $cats=$_POST['cat'];
+            $title=$info['title'];
+            $articles_loc=$this->image_address('upload/');
+            $model=new Model();
+            $image_loc=$model->uploader($image,$articles_loc);
+
+            $title=$info['title'];
+            $text=$info['text'];
+            if (is_array($cats)){$cats_ids=implode(',',$cats);
+            }else{$cats_ids=$cats;}
+            $author=$_SESSION['login'];
+            $date=date('y/m/d');
+            $article_model=new \application\model\Article();
+            $list=[$title,$text,$cats_ids,$image_loc,$author,$date,$status,$id];
+            $article_model->update_article($list);
+            $this->reback();
+
+    }
+
+    public function delete_article($id)
+    {
+        $article_model=new \application\model\Article();
+        $article_model->delete($id);
+        $this->reback();
+    }
 }
