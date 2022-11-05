@@ -21,6 +21,20 @@ $(document).ready(function() {
         //$(".admin-menu  ul  li > ul.sub-admin").slideToggle();
     });
 });
+$(document).ready(function() {
+    $('.admin-menu > ul > li.slider').click(function(){
+        //$('ul.sub-admin',this).slideToggle();
+        $("ul.sub-slider").slideToggle();
+        //$(".admin-menu  ul  li > ul.sub-admin").slideToggle();
+    });
+});
+$(document).ready(function() {
+    $('.admin-menu > ul > li.wiget').click(function(){
+        //$('ul.sub-admin',this).slideToggle();
+        $("ul.sub-widget").slideToggle();
+        //$(".admin-menu  ul  li > ul.sub-admin").slideToggle();
+    });
+});
 $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,
