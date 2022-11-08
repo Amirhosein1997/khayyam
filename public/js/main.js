@@ -35,6 +35,13 @@ $(document).ready(function() {
         //$(".admin-menu  ul  li > ul.sub-admin").slideToggle();
     });
 });
+$(document).ready(function() {
+    $('.admin-menu > ul > li.page').click(function(){
+        //$('ul.sub-admin',this).slideToggle();
+        $("ul.sub-page").slideToggle();
+        //$(".admin-menu  ul  li > ul.sub-admin").slideToggle();
+    });
+});
 $('.owl-carousel').owlCarousel({
     loop:true,
     margin:10,

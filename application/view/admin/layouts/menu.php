@@ -136,5 +136,27 @@
             <li><a href="<?php $this->url('widget/widget_menu/all_widget') ?>">همه ویدجت ها</a></li>
 
         </ul>
+        <li class="page">
+            <a href="javascript:;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bootstrap" viewBox="0 0 16 16">
+                    <path d="M5.062 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062V12zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762V8.162h1.822c1.236 0 1.887.463 1.887 1.348 0 .896-.627 1.377-1.811 1.377H6.375z"></path>
+                    <path d="M0 4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4zm4-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3H4z"></path>
+                </svg>
+                مدیریت صفحات
+                <span style="float: left;">
+                                <svg class="bi bi-chevron-down" width="1em" height="1em" viewBox="0 0 20 20"
+                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M3.646 6.646a.5.5 0 01.708 0L10 12.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z"
+                                      clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+            </a>
+        </li>
+        <ul class="sub-page">
+            <li><a href="<?php $this->url('page/page_menu/page_setting') ?>">تنظیمات صفحه جدید</a></li>
+            <li><a href="<?php $this->url('page/page_menu/single_page_setting') ?>">تنظیمات تک صفحه</a></li>
+
+        </ul>
     </ul>
 </div>
