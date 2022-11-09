@@ -68,4 +68,22 @@ class Page extends Model
         $query="update page_tbl set parent=?,page_link=?,title=?,author=?,date=?,status=? where id=? ";
         $this->execute($query,$list);
     }
+
+    public function select_single_page()
+    {
+        $query="select * from single_page";
+        return $this->query($query)->fetch(\PDO::FETCH_OBJ);
+    }
+
+    public function insert_single_page($list)
+    {
+        $query="insert into single_page (title, description, video_code, btn_title, page_link, author, date, status) VALUES(?,?,?,?,?,?,?,? )";
+        $this->execute($query,$list);
+    }
+
+    public function update_single_page($list)
+    {
+        $query="update single_page set title=?,description=?,video_code=?,btn_title=?,page_link=?,author=?,date=?,status=?";
+        $this->execute($query,$list);
+    }
 }

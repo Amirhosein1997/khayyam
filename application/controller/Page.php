@@ -107,4 +107,31 @@ class Page extends Controller
         $page_model->update_page($list);
         $this->reback();
     }
+
+    public function insert_single_page()
+    {
+        $info=$_POST['info'];
+        $btn_title=$_POST['btn_title'];
+        $page=$_POST['page'];
+        $title=$info['title'];
+        $description=$info['description'];
+        $code=$info['vid_link'];
+        $author=$_SESSION['login_user'];
+        $date=date('y/m/d');
+        $status=$info['status'];
+        $imploded_btn=implode(',',$btn_title);
+        $imploded_page=implode(',',$page);
+        $page_model=new \application\model\Page();
+
+        $single_page_records=$page_model->select_single_page();
+        if ($single_page_records ==""){
+            $list=[$title,$description,$code,$imploded_btn,$imploded_page,$author,$date,$status];
+            $page_model->insert_single_page($list);
+
+        }else {
+            $list=[$title,$description,$code,$imploded_btn,$imploded_page,$author,$date,$status];
+            $page_model->update_single_page($list);
+        }
+        $this->reback();
+    }
 }
