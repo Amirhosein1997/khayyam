@@ -44,27 +44,26 @@
 
             <aside class="menu-bar">
                 <nav id="menu_item">
-                    <?php
-                  //  foreach ($categories as $category) :
+                    <?php $category_model=new \application\model\Category();
+                    $cats=$category_model->cat_list();
+                    foreach ($cats as $category) :
                     ?>
                     <ul class="menu">
                         <li class="fa fa-wikipedia-w menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-7895">
-                            <a href="https://websoft3.com/wordpress-tutorials/" dideo-checked="true"><?php // echo $category->title?></a>
+                            <a href="https://websoft3.com/wordpress-tutorials/" dideo-checked="true"><?php  echo $category->title?></a>
                             <ul class="sub-menu">
+                                <?php $subcats=$category_model->sub_cat($category->id);
+                                foreach ($subcats as $subcat): ?>
                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2214">
                                     <a href="https://websoft3.com/category/wordpress-tutorials-article/video_wp_vip/"
-                                       dideo-checked="true">فیلم آموزش وردپرس غیر رایگان</a></li>
-                                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2215">
-                                    <a href="https://websoft3.com/category/wordpress-tutorials-article/article_wp/"
-                                       dideo-checked="true">مقالات وردپرس</a></li>
-                                <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2281">
-                                    <a href="https://websoft3.com/category/wordpress-tutorials-article/wordpress-amator-learn/"
-                                       dideo-checked="true">آموزش های مقدماتی وردپرس</a></li>
+                                       dideo-checked="true"><?php  echo $subcat->title?></a></li>
+
+                                <?php endforeach; ?>
                             </ul>
                         </li>
 
                     </ul>
-                    <?php //endforeach; ?>
+                    <?php endforeach; ?>
                 </nav>
             </aside>
         </div>

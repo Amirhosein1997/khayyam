@@ -2,6 +2,7 @@
 
 
 namespace application\controller;
+use application\model\Article;
 use application\model\Model;
 use application\model\User as UserModel;
 use application\model\Category;
@@ -263,5 +264,12 @@ class user extends Controller
         $list=[$email,$password,$fullname,$Mcode,$father_name,$birthday,$degree,$field,$phone,$state,$city,$email,$linkdin,$instagram,$telegram,$home_address,$work_address,$skill,$skill_desc,$dir_pics,$permition,$author,$date_register,$status,$id];
         $model->update_user($list);
         $this->route("user/user_menu/all_users");
+    }
+    public function article_page($id)
+    {
+        $article_model=new Article();
+        $article_record=$article_model->article_record($id);
+        $this->view('app.single',compact('article_record'));
+
     }
 }

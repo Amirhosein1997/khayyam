@@ -145,4 +145,6 @@ class User extends Model
         $query="delete from users_tbl where id=?";
         $this->execute($query,[$id]);
     }
+
+
 }

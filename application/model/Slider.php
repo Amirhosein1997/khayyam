@@ -48,4 +48,9 @@ class Slider extends Model
         $query="select * from slider_tbl order by id desc";
         return $this->query($query)->fetchAll(\PDO::FETCH_OBJ);
     }
+    public function select_on_slider()
+    {
+        $query="select * from slider_tbl where status='on' and title='sub_slider'";
+        return $this->query($query)->fetchAll(\PDO::FETCH_OBJ);
+    }
 }

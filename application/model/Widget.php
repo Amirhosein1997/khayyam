@@ -33,4 +33,9 @@ class Widget extends Model
         $query="update widget_tbl set title=?,sort=?,svg_code=?,author=?,date=?,status=? where id=?";
         $this->execute($query,$list);
     }
+    public function all_on_widget()
+    {
+        $query="select * from widget_tbl where status='on'";
+        return $this->query($query)->fetchAll(\PDO::FETCH_OBJ);
+    }
 }
